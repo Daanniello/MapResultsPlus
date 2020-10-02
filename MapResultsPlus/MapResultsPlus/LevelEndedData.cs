@@ -14,8 +14,15 @@ namespace MapResultsPlus
             Logger.log.Info("PauseOnMiss created!");
         }
 
+        /// <summary>
+        /// Checks if the endscreen is shown 
+        /// </summary>
+        /// <param name="oldScene"></param>
+        /// <param name="newScene"></param>
+        /// <returns></returns>
         public bool InGameCheck(Scene oldScene, Scene newScene)
         {
+            //Creates a new NoteDataCollection on map start 
             if (newScene.name == "GameCore")
             {
                 Logger.log.Info("User is now in the playing scene");
@@ -25,6 +32,8 @@ namespace MapResultsPlus
 
                 return true;
             }
+
+            //Get all data after the map has ended. By failed or finished
             if (oldScene.name == "GameCore")
             {
 

@@ -8,16 +8,19 @@ namespace MapResultsPlus
 {
     class DataPerNotePositionList
     {
+        //First layer on the grid 
         public List<object> Position00;
         public List<object> Position01;
         public List<object> Position02;
         public List<object> Position03;
 
+        //Second layer on the grid 
         public List<object> Position10;
         public List<object> Position11;
         public List<object> Position12;
         public List<object> Position13;
 
+        //Third layer on the grid
         public List<object> Position20;
         public List<object> Position21;
         public List<object> Position22;
@@ -42,6 +45,11 @@ namespace MapResultsPlus
             Position23 = new List<object>();
         }
 
+        /// <summary>
+        /// Adds specific data from one note to the specific List by note position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="value"></param>
         public void AddNoteDataOnPosition(int position, object value)
         {
             switch (position)
@@ -88,17 +96,27 @@ namespace MapResultsPlus
             }
         }
 
-        public double CalculateAvgFromList(List<object> floatList)
+        //Todo: Make this function generic
+        /// <summary>
+        /// Calculates the average from values inside a list
+        /// </summary>
+        /// <param name="doubleList"></param>
+        /// <returns></returns>
+        public double CalculateAvgFromList(List<object> doubleList)
         {
             double count = 0;
-            foreach(var f in floatList)
+            foreach(var f in doubleList)
             {
                 count += Convert.ToDouble(f);
             }
 
-            return count / floatList.Count();
+            return count / doubleList.Count();
         }
 
+        /// <summary>
+        /// Returns a dictionary of averages on all note positions in the grid
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, double> CalculateAvgFromEveryNotePosition()
         {
             var avgNotePositionList = new Dictionary<string, double>();
