@@ -66,6 +66,15 @@ namespace MapResultsPlus
             Logger.log.Info("Scene changed!");
             try
             {
+                //TODO
+                //Add New UI Screen for the data 
+                GameObject endResultsScreen = GameObject.CreatePrimitive(PrimitiveType.Plane);
+                endResultsScreen.transform.localScale = new Vector3(0.3f, 0.1f, 0.1f);
+                endResultsScreen.transform.position = new Vector3(0, 3.25f, 2.5f);
+                endResultsScreen.transform.eulerAngles = new Vector3(255, 0, 0);
+                
+
+
                 levelEndedData.InGameCheck(oldScene, newScene);
             }
             catch (Exception ex)
