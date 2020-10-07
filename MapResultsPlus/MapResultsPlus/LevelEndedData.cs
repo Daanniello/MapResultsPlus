@@ -1,7 +1,9 @@
 ﻿using IPA.Utilities;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace MapResultsPlus
 {
@@ -36,6 +38,28 @@ namespace MapResultsPlus
             //Get all data after the map has ended. By failed or finished
             if (oldScene.name == "GameCore")
             {
+                //-------------------------------------Make End result screen override-------------------------------------------------
+                //Get the resultViewController after playing a map
+                var resultsViewController = Resources.FindObjectsOfTypeAll<ResultsViewController>().FirstOrDefault();
+                //Gets the failedPanel (Content to show)              
+                var failedPanel = ReflectionUtil.GetField<GameObject, ResultsViewController>(resultsViewController, "_failedPanel");
+                var failedSongNameText = ReflectionUtil.GetField<TextMeshProUGUI, ResultsViewController>(resultsViewController, "_failedSongNameText");
+                //Creates new content 
+                GameObject endResultsScreen = GameObject.CreatePrimitive(PrimitiveType.Plane);
+                endResultsScreen.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                endResultsScreen.transform.position = new Vector3(0, 2, 2.6f);
+                endResultsScreen.transform.eulerAngles = new Vector3(270, 0, 0);
+
+
+                //replaces the failedPanel content with a new one
+                ReflectionUtil.SetField(resultsViewController, "_failedPanel", endResultsScreen);
+
+
+                //var failedPanel2 = Object.Instantiate(failedPanel, failedPanel.transform, true);
+                //failedPanel2.transform.position = new Vector3(0.1f, 1.6f, 2.6f);
+                //failedPanel2.SetActive(false);
+             
+                //----------------------------------------------------------------------------------------------------------------------
 
                 //Get the LevelCompletionResults with preparelevelcompletionresult
                 var prepareLevelCompletionResults = Resources.FindObjectsOfTypeAll<PrepareLevelCompletionResults>().FirstOrDefault();
