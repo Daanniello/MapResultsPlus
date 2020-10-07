@@ -46,9 +46,15 @@ namespace MapResultsPlus
                 var failedSongNameText = ReflectionUtil.GetField<TextMeshProUGUI, ResultsViewController>(resultsViewController, "_failedSongNameText");
                 //Creates new content 
                 GameObject endResultsScreen = GameObject.CreatePrimitive(PrimitiveType.Plane);
+                
                 endResultsScreen.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
                 endResultsScreen.transform.position = new Vector3(0, 2, 2.6f);
                 endResultsScreen.transform.eulerAngles = new Vector3(270, 0, 0);
+
+                //TODO: Add text on an object
+                Text myText = endResultsScreen.AddComponent<Text>();
+                myText.fontSize = 24;
+                myText.color = Color.red;
 
 
                 //replaces the failedPanel content with a new one
